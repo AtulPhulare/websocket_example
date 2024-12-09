@@ -41,12 +41,29 @@ class ChatMessageWidget extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 4),
-                Text(
-                  _formatTime(message.timestamp),
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: isMe ? Colors.white70 : Colors.black54,
-                  ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      _formatTime(message.timestamp),
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: isMe ? Colors.white70 : Colors.black54,
+                      ),
+                    ),
+                    if (isMe) ...[
+                      const SizedBox(width: 4),
+                      Icon(
+                        message.read
+                            ? Icons.done_all
+                            : message.delivered
+                                ? Icons.done_all
+                                : Icons.done,
+                        size: 16,
+                        color: Colors.white70,
+                      ),
+                    ],
+                  ],
                 ),
               ],
             ),
